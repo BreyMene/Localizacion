@@ -2,6 +2,7 @@ using lib_entidades.Modelos;
 using lib_repositorios;
 using lib_repositorios.Implementaciones;
 using lib_repositorios.Interfaces;
+using mst_pruebas.nucleo;
 
 namespace mst_pruebas.Repositorios
 {
@@ -22,7 +23,7 @@ namespace mst_pruebas.Repositorios
             var conexion = new Conexion();
 
             // Establece la cadena de conexión a la base de datos SQL Server
-            conexion.StringConnection = "server=localhost;database=db_Localizacion;Integrated Security=True;TrustServerCertificate=true;";
+            conexion.StringConnection = Configuracion.ObtenerValor("ConectionString");
 
             // Inicializa el repositorio de países con la conexión creada
             iRepositorio = new PaisesRepositorio(conexion);
