@@ -6,18 +6,18 @@ using mst_pruebas.nucleo;
 
 namespace mst_pruebas.Repositorios
 {
-    // Clase de prueba unitaria para la funcionalidad de la entidad Personas
+    // Clase de prueba unitaria para la funcionalidad de la entidad Usuarios
     [TestClass]
-    public class PersonasPruebaUnitaria
+    public class UsuariosPruebaUnitaria
     {
-        // Instancia de IPersonasRepositorio para interactuar con la base de datos a través del repositorio de personas
-        private IPersonasRepositorio? iRepositorio = null;
+        // Instancia de IUsuariosRepositorio para interactuar con la base de datos a través del repositorio de Usuarios
+        private IUsuariosRepositorio? iRepositorio = null;
 
-        // Instancia de la entidad Personas que se utilizará durante las pruebas
-        private Personas? entidad = null;
+        // Instancia de la entidad Usuarios que se utilizará durante las pruebas
+        private Usuarios? entidad = null;
 
         // Constructor de la clase de prueba unitaria
-        public PersonasPruebaUnitaria()
+        public UsuariosPruebaUnitaria()
         {
             // Crea una nueva conexión a la base de datos
             var conexion = new Conexion();
@@ -25,16 +25,16 @@ namespace mst_pruebas.Repositorios
             // Establece la cadena de conexión a la base de datos SQL Server
             conexion.StringConnection = Configuracion.ObtenerValor("ConectionString");
 
-            // Inicializa el repositorio de personas con la conexión creada
-            iRepositorio = new PersonasRepositorio(conexion);
+            // Inicializa el repositorio de Usuarios con la conexión creada
+            iRepositorio = new UsuariosRepositorio(conexion);
         }
 
-        // Método que ejecuta todas las pruebas unitarias para la entidad Personas
+        // Método que ejecuta todas las pruebas unitarias para la entidad Usuarios
         [TestMethod]
         public void Ejecutar()
         {
             Guardar();   // Prueba para guardar una nueva persona
-            Listar();    // Prueba para listar todas las personas
+            Listar();    // Prueba para listar todas las Usuarios
             Buscar();    // Prueba para buscar una persona
             Modificar(); // Prueba para modificar los datos de una persona
             Borrar();    // Prueba para borrar una persona
@@ -43,12 +43,13 @@ namespace mst_pruebas.Repositorios
         // Método que prueba la funcionalidad de guardar una nueva persona
         private void Guardar()
         {
-            // Crea una nueva instancia de la entidad Personas con la cédula, nombre y contraseña
-            entidad = new Personas()
+            // Crea una nueva instancia de la entidad Usuarios con la cédula, nombre y contraseña
+            entidad = new Usuarios()
             {
                 Cedula = "1111000",  // Cédula de la persona
                 Nombre = "PRUEBA",    // Nombre de la persona
-                Contrasena = "*****"  // Contraseña de la persona 
+                Contrasena = "*****",  // Contraseña de la persona 
+                Rol = "Admin"
             };
 
             // Guarda la entidad en la base de datos usando el repositorio
@@ -58,10 +59,10 @@ namespace mst_pruebas.Repositorios
             Assert.IsTrue(entidad.Id != 0);
         }
 
-        // Método que prueba la funcionalidad de listar todas las personas
+        // Método que prueba la funcionalidad de listar todas las Usuarios
         private void Listar()
         {
-            // Obtiene una lista de todas las personas
+            // Obtiene una lista de todas las Usuarios
             var lista = iRepositorio!.Listar();
 
             // Verifica que la lista tenga al menos un elemento
@@ -81,8 +82,8 @@ namespace mst_pruebas.Repositorios
         // Método que prueba la funcionalidad de modificar los datos de una persona
         private void Modificar()
         {
-            // Cambia el nombre de la persona de "PRUEBA" a "pepito"
-            entidad!.Nombre = "pepito";
+            // Cambia el rol de la persona de "Admin" a "Comun"
+            entidad!.Rol = "Comun";
 
             // Actualiza la persona en la base de datos
             entidad = iRepositorio!.Modificar(entidad!);
