@@ -13,13 +13,14 @@ CREATE TABLE [Coordenadas] (
 );
 GO
 
---Crear tabla de 'Personas'
-CREATE TABLE [Personas] (
+--Crear tabla de 'Usuarios'
+CREATE TABLE [Usuarios] (
 	[Id] INT NOT NULL IDENTITY (1,1), --Id de la Persona (Llave Primaria), tipo int, Autogenerada
 	[Cedula] NVARCHAR(50) NOT NULL, --Cedula, tipo NVARCHAR de 50 digitos, no nulos
 	[Nombre] NVARCHAR(50) NOT NULL,--Nombre, tipo NVARCHAR de 50 digitos, no nulos
 	[Contrasena] NVARCHAR(50) NOT NULL, --Contraseña, tipo NVARCHAR de 50 digitos, no nulos
-	CONSTRAINT PK_Personas PRIMARY KEY CLUSTERED ([Id]) --Constraint de Primary Key
+	[Rol] NVARCHAR(10) NOT NULL, -- Rol del usuario, tipo NVARCHAR de 10 digitos, no nulo
+	CONSTRAINT PK_Usuarios PRIMARY KEY CLUSTERED ([Id]) --Constraint de Primary Key
 );
 GO
 
@@ -83,7 +84,7 @@ CREATE TABLE [Detalles] (
 	[Persona] INT NOT NULL, --Id de la Persona a la que pertenece, no admite nulos (todo Detalle tiene una Persona)
 	CONSTRAINT PK_Detalles PRIMARY KEY CLUSTERED ([ID]),--Constraint de Primary Key
 	CONSTRAINT FK_Detalles_Ubicaciones FOREIGN KEY ([Ubicacion]) REFERENCES [Ubicaciones] ([Id]) ON DELETE No Action ON UPDATE No Action,--constraint de Foreign key entre Detalles y Ubicaciones, evitando borrado en cascada
-	CONSTRAINT FK_Detalles_Personas FOREIGN KEY ([Persona]) REFERENCES [Personas] ([ID]) ON DELETE No Action ON UPDATE No Action --constraint de Foreign key entre Detalles y Personas, evitando borrado en cascada
+	CONSTRAINT FK_Detalles_Usuarios FOREIGN KEY ([Persona]) REFERENCES [Usuarios] ([ID]) ON DELETE No Action ON UPDATE No Action --constraint de Foreign key entre Detalles y Usuarios, evitando borrado en cascada
 );
 GO
 
@@ -133,11 +134,11 @@ INSERT INTO Ubicaciones (Coordenada, Barrio, Descripcion, Imagen, Nombre)
 VALUES (4, 4, 'Vistas excelentes', 'img4', 'Torres de Bela Vista');
 GO
 
--- Insertar datos en 'Personas'
-INSERT INTO Personas (Cedula, Nombre, Contrasena) VALUES ('1234567890', 'Juan Pérez', 'pass123');
-INSERT INTO Personas (Cedula, Nombre, Contrasena) VALUES ('9876543210', 'María López', 'pass456');
-INSERT INTO Personas (Cedula, Nombre, Contrasena) VALUES ('1111222233', 'Carlos Garcia', 'pass789');
-INSERT INTO Personas (Cedula, Nombre, Contrasena) VALUES ('4444555566', 'Ana Silva', 'pass123');
+-- Insertar datos en 'Usuarios'
+INSERT INTO Usuarios (Cedula, Nombre, Contrasena, Rol) VALUES ('1234567890', 'Juan Pérez', 'pass123', 'Admin');
+INSERT INTO Usuarios (Cedula, Nombre, Contrasena, Rol) VALUES ('9876543210', 'María López', 'pass456', 'Admin');
+INSERT INTO Usuarios (Cedula, Nombre, Contrasena, Rol) VALUES ('1111222233', 'Carlos Garcia', 'pass789', 'Comun');
+INSERT INTO Usuarios (Cedula, Nombre, Contrasena, Rol) VALUES ('4444555566', 'Ana Silva', 'pass123', 'Comun');
 GO
 
 -- Insertar datos en 'Detalles'
