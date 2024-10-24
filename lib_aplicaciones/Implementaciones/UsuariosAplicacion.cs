@@ -6,11 +6,11 @@ using lib_entidades.Modelos;
 
 namespace lib_aplicaciones.Implementaciones
 {
-    public class PersonasAplicacion : IPersonasAplicacion
+    public class UsuariosAplicacion : IUsuariosAplicacion
     {
-        private IPersonasRepositorio? iRepositorio = null;
+        private IUsuariosRepositorio? iRepositorio = null;
 
-        public PersonasAplicacion(IPersonasRepositorio iRepositorio)
+        public UsuariosAplicacion(IUsuariosRepositorio iRepositorio)
         {
             this.iRepositorio = iRepositorio;
         }
@@ -20,7 +20,7 @@ namespace lib_aplicaciones.Implementaciones
             this.iRepositorio!.Configurar(string_conexion);
         }
 
-        public Personas Borrar(Personas entidad)
+        public Usuarios Borrar(Usuarios entidad)
         {
             if (entidad == null || !entidad.Validar())
                 throw new Exception("lbFaltaInformacion");
@@ -32,7 +32,7 @@ namespace lib_aplicaciones.Implementaciones
             return entidad;
         }
 
-        public Personas Guardar(Personas entidad)
+        public Usuarios Guardar(Usuarios entidad)
         {
             if (entidad == null || !entidad.Validar())
                 throw new Exception("lbFaltaInformacion");
@@ -44,14 +44,14 @@ namespace lib_aplicaciones.Implementaciones
             return entidad;
         }
 
-        public List<Personas> Listar()
+        public List<Usuarios> Listar()
         {
             return iRepositorio!.Listar();
         }
 
-        public List<Personas> Buscar(Personas entidad, string tipo)
+        public List<Usuarios> Buscar(Usuarios entidad, string tipo)
         {
-            Expression<Func<Personas, bool>>? condiciones = null;
+            Expression<Func<Usuarios, bool>>? condiciones = null;
             switch (tipo.ToUpper())
             {
                 case "NOMBRE": condiciones = x => x.Nombre!.Contains(entidad.Nombre!); break;
@@ -60,7 +60,7 @@ namespace lib_aplicaciones.Implementaciones
             return this.iRepositorio!.Buscar(condiciones);
         }
 
-        public Personas Modificar(Personas entidad)
+        public Usuarios Modificar(Usuarios entidad)
         {
             if (entidad == null || !entidad.Validar())
                 throw new Exception("lbFaltaInformacion");

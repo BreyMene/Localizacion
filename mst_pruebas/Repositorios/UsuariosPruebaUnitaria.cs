@@ -33,29 +33,29 @@ namespace mst_pruebas.Repositorios
         [TestMethod]
         public void Ejecutar()
         {
-            Guardar();   // Prueba para guardar una nueva persona
-            Listar();    // Prueba para listar todas las Usuarios
-            Buscar();    // Prueba para buscar una persona
-            Modificar(); // Prueba para modificar los datos de una persona
-            Borrar();    // Prueba para borrar una persona
+            Guardar();   // Prueba para guardar un nuevo Usuario
+            Listar();    // Prueba para listar todos los Usuarios
+            Buscar();    // Prueba para buscar un Usuario
+            Modificar(); // Prueba para modificar los datos de un Usuario
+            Borrar();    // Prueba para borrar un Usuario
         }
 
-        // Método que prueba la funcionalidad de guardar una nueva persona
+        // Método que prueba la funcionalidad de guardar un nuevo Usuario
         private void Guardar()
         {
             // Crea una nueva instancia de la entidad Usuarios con la cédula, nombre y contraseña
             entidad = new Usuarios()
             {
-                Cedula = "1111000",  // Cédula de la persona
-                Nombre = "PRUEBA",    // Nombre de la persona
-                Contrasena = "*****",  // Contraseña de la persona 
+                Cedula = "1111000",  // Cédula del Usuario
+                Nombre = "PRUEBA",    // Nombre del Usuario
+                Contrasena = "*****",  // Contraseña del Usuario 
                 Rol = "Admin"
             };
 
             // Guarda la entidad en la base de datos usando el repositorio
             entidad = iRepositorio!.Guardar(entidad);
 
-            // Verifica que la persona haya sido guardada con un ID distinto de 0
+            // Verifica que el Usuario haya sido guardada con un ID distinto de 0
             Assert.IsTrue(entidad.Id != 0);
         }
 
@@ -69,42 +69,42 @@ namespace mst_pruebas.Repositorios
             Assert.IsTrue(lista.Count > 0);
         }
 
-        // Método que prueba la funcionalidad de buscar una persona por su ID
+        // Método que prueba la funcionalidad de buscar un Usuario por su ID
         public void Buscar()
         {
-            // Busca una persona por su ID utilizando una expresión lambda
+            // Busca un usuario por su ID utilizando una expresión lambda
             var lista = iRepositorio!.Buscar(x => x.Id == entidad!.Id);
 
             // Verifica que la lista de resultados no esté vacía
             Assert.IsTrue(lista.Count > 0);
         }
 
-        // Método que prueba la funcionalidad de modificar los datos de una persona
+        // Método que prueba la funcionalidad de modificar los datos de un Usuario
         private void Modificar()
         {
-            // Cambia el rol de la persona de "Admin" a "Comun"
+            // Cambia el rol del Usuario de "Admin" a "Comun"
             entidad!.Rol = "Comun";
 
-            // Actualiza la persona en la base de datos
+            // Actualiza el Usuario en la base de datos
             entidad = iRepositorio!.Modificar(entidad!);
 
-            // Busca la persona modificada por su ID
+            // Busca el Usuario modificada por su ID
             var lista = iRepositorio!.Buscar(x => x.Id == entidad!.Id);
 
-            // Verifica que la persona modificada aún exista en la base de datos
+            // Verifica que el Usuario modificada aún exista en la base de datos
             Assert.IsTrue(lista.Count > 0);
         }
 
-        // Método que prueba la funcionalidad de borrar una persona
+        // Método que prueba la funcionalidad de borrar un Usuario
         private void Borrar()
         {
-            // Elimina la persona utilizando el repositorio
+            // Elimina al Usuario utilizando el repositorio
             entidad = iRepositorio!.Borrar(entidad!);
 
-            // Intenta buscar la persona que fue eliminada por su ID
+            // Intenta buscar el Usuario que fue eliminada por su ID
             var lista = iRepositorio!.Buscar(x => x.Id == entidad!.Id);
 
-            // Verifica que la lista de resultados esté vacía, indicando que la persona fue eliminada
+            // Verifica que la lista de resultados esté vacía, indicando que el Usuario fue eliminada
             Assert.IsTrue(lista.Count == 0);
         }
     }
