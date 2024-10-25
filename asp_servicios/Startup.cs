@@ -26,11 +26,23 @@ namespace asp_servicios
             services.AddSwaggerGen();
             services.AddScoped<Conexion, Conexion>();
             // Repositorios
+            services.AddScoped<IPaisesRepositorio, PaisesRepositorio>();
+            services.AddScoped<IDepartamentosRepositorio, DepartamentosRepositorio>();
+            services.AddScoped<ICiudadesRepositorio, CiudadesRepositorio>();
             services.AddScoped<IBarriosRepositorio, BarriosRepositorio>();
             services.AddScoped<IUsuariosRepositorio, UsuariosRepositorio>();
+            services.AddScoped<ICoordenadasRepositorio, CoordenadasRepositorio>();
+            services.AddScoped<IDetallesRepositorio, DetallesRepositorio>();
+            services.AddScoped<IUbicacionesRepositorio, UbicacionesRepositorio>();
             // Aplicaciones
+            services.AddScoped<IPaisesAplicacion, PaisesAplicacion>();
+            services.AddScoped<IDepartamentosAplicacion, DepartamentosAplicacion>();
+            services.AddScoped<ICiudadesAplicacion, CiudadesAplicacion>();
             services.AddScoped<IBarriosAplicacion, BarriosAplicacion>();
             services.AddScoped<IUsuariosAplicacion, UsuariosAplicacion>();
+            services.AddScoped<ICoordenadasAplicacion, CoordenadasAplicacion>();
+            services.AddScoped<IDetallesAplicacion, DetallesAplicacion>();
+            services.AddScoped<IUbicacionesAplicacion, UbicacionesAplicacion>();
             // Controladores
             services.AddScoped<TokenController, TokenController>();
 

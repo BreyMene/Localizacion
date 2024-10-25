@@ -37,7 +37,7 @@ namespace asp_servicios.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpPost]
         public string Listar()
         {
             var respuesta = new Dictionary<string, object>();
@@ -126,7 +126,7 @@ namespace asp_servicios.Controllers
             }
         }
 
-        [HttpPut]
+        [HttpPost]
         public string Modificar()
         {
             var respuesta = new Dictionary<string, object>();
@@ -157,7 +157,7 @@ namespace asp_servicios.Controllers
             }
         }
 
-        [HttpDelete]
+        [HttpPost]
         public string Borrar()
         {
             var respuesta = new Dictionary<string, object>();
