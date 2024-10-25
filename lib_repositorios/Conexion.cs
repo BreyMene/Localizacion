@@ -29,7 +29,7 @@ namespace lib_repositorios
         protected DbSet<Departamentos>? Departamentos { get; set; }
         protected DbSet<Paises>? Paises { get; set; }
         protected DbSet<Coordenadas>? Coordenadas { get; set; }
-        protected DbSet<Personas>? Personas { get; set; }
+        protected DbSet<Usuarios>? Usuarios { get; set; }
         protected DbSet<Ubicaciones>? Ubicaciones { get; set; }
         protected DbSet<Detalles>? Detalles { get; set; }
 

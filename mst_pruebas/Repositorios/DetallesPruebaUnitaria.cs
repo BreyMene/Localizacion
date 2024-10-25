@@ -43,11 +43,11 @@ namespace mst_pruebas.Repositorios
         // Método que prueba la funcionalidad de guardar un nuevo detalle
         private void Guardar()
         {
-            // Crea una nueva instancia de la entidad Detalles con fecha, persona y ubicación
+            // Crea una nueva instancia de la entidad Detalles con fecha, Usuario y ubicación
             entidad = new Detalles()
             {
                 Fecha = DateTime.Now, // Fecha actual
-                Persona = 1,          // ID de la persona asociada
+                Usuario = 1,          // ID del Usuario asociada
                 Ubicacion = 2,       // ID de la ubicación asociada
             };
 
@@ -81,8 +81,8 @@ namespace mst_pruebas.Repositorios
         // Método que prueba la funcionalidad de modificar un detalle
         private void Modificar()
         {
-            // Modifica el ID de la persona asociada al detalle
-            entidad!.Persona = 2;
+            // Modifica el ID del Usuario asociada al detalle
+            entidad!.Usuario = 2;
 
             // Actualiza el detalle en la base de datos
             entidad = iRepositorio!.Modificar(entidad!);

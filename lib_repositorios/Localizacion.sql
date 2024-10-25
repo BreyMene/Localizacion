@@ -15,7 +15,7 @@ GO
 
 --Crear tabla de 'Usuarios'
 CREATE TABLE [Usuarios] (
-	[Id] INT NOT NULL IDENTITY (1,1), --Id de la Persona (Llave Primaria), tipo int, Autogenerada
+	[Id] INT NOT NULL IDENTITY (1,1), --Id del Usuario (Llave Primaria), tipo int, Autogenerada
 	[Cedula] NVARCHAR(50) NOT NULL, --Cedula, tipo NVARCHAR de 50 digitos, no nulos
 	[Nombre] NVARCHAR(50) NOT NULL,--Nombre, tipo NVARCHAR de 50 digitos, no nulos
 	[Contrasena] NVARCHAR(50) NOT NULL, --Contraseña, tipo NVARCHAR de 50 digitos, no nulos
@@ -81,10 +81,10 @@ CREATE TABLE [Detalles] (
 	[ID] INT NOT NULL IDENTITY (1,1),--Id de la  (Llave Primaria), Autogenerada
 	[Fecha] SMALLDATETIME NOT NULL DEFAULT GETDATE(), --Fecha del Detalle, no nula, por defecto se toma la fecha actual
 	[Ubicacion] INT NOT NULL, --Id de la Ubicacion a la que pertenece, no admite nulos (todo Detalle tiene una Ubicacion)
-	[Persona] INT NOT NULL, --Id de la Persona a la que pertenece, no admite nulos (todo Detalle tiene una Persona)
+	[Usuario] INT NOT NULL, --Id del Usuario a la que pertenece, no admite nulos (todo Detalle tiene una Usuario)
 	CONSTRAINT PK_Detalles PRIMARY KEY CLUSTERED ([ID]),--Constraint de Primary Key
 	CONSTRAINT FK_Detalles_Ubicaciones FOREIGN KEY ([Ubicacion]) REFERENCES [Ubicaciones] ([Id]) ON DELETE No Action ON UPDATE No Action,--constraint de Foreign key entre Detalles y Ubicaciones, evitando borrado en cascada
-	CONSTRAINT FK_Detalles_Usuarios FOREIGN KEY ([Persona]) REFERENCES [Usuarios] ([ID]) ON DELETE No Action ON UPDATE No Action --constraint de Foreign key entre Detalles y Usuarios, evitando borrado en cascada
+	CONSTRAINT FK_Detalles_Usuarios FOREIGN KEY ([Usuario]) REFERENCES [Usuarios] ([ID]) ON DELETE No Action ON UPDATE No Action --constraint de Foreign key entre Detalles y Usuarios, evitando borrado en cascada
 );
 GO
 
@@ -142,8 +142,8 @@ INSERT INTO Usuarios (Cedula, Nombre, Contrasena, Rol) VALUES ('4444555566', 'An
 GO
 
 -- Insertar datos en 'Detalles'
-INSERT INTO Detalles ([Ubicacion], Persona, Fecha) VALUES (1, 1, '2023-09-01');
-INSERT INTO Detalles ([Ubicacion], Persona, Fecha) VALUES (2, 3, '2023-09-05');
-INSERT INTO Detalles ([Ubicacion], Persona, Fecha) VALUES (3, 4, '2023-09-10');
-INSERT INTO Detalles ([Ubicacion], Persona, Fecha) VALUES (4, 2, '2023-09-15');
+INSERT INTO Detalles ([Ubicacion], Usuario, Fecha) VALUES (1, 1, '2023-09-01');
+INSERT INTO Detalles ([Ubicacion], Usuario, Fecha) VALUES (2, 3, '2023-09-05');
+INSERT INTO Detalles ([Ubicacion], Usuario, Fecha) VALUES (3, 4, '2023-09-10');
+INSERT INTO Detalles ([Ubicacion], Usuario, Fecha) VALUES (4, 2, '2023-09-15');
 GO
