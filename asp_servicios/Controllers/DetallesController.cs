@@ -8,12 +8,12 @@ namespace asp_servicios.Controllers
 {
     [ApiController]
     [Route("[controller]/[action]")]
-    public class BarriosController : ControllerBase
+    public class DetallesController : ControllerBase
     {
-        private IBarriosAplicacion? iAplicacion = null;
+        private IDetallesAplicacion? iAplicacion = null;
         private TokenController? tokenController = null;
 
-        public BarriosController(IBarriosAplicacion? iAplicacion,
+        public DetallesController(IDetallesAplicacion? iAplicacion,
             TokenController tokenController)
         {
             this.iAplicacion = iAplicacion;
@@ -77,7 +77,7 @@ namespace asp_servicios.Controllers
                     return JsonConversor.ConvertirAString(respuesta);
                 }
 
-                var entidad = JsonConversor.ConvertirAObjeto<Barrios>(
+                var entidad = JsonConversor.ConvertirAObjeto<Detalles>(
                     JsonConversor.ConvertirAString(datos["Entidad"]));
                 var tipo = datos["Tipo"].ToString();
 
@@ -108,7 +108,7 @@ namespace asp_servicios.Controllers
                     return JsonConversor.ConvertirAString(respuesta);
                 }
 
-                var entidad = JsonConversor.ConvertirAObjeto<Barrios>(
+                var entidad = JsonConversor.ConvertirAObjeto<Detalles>(
                     JsonConversor.ConvertirAString(datos["Entidad"]));
 
                 this.iAplicacion!.Configurar(Configuracion.ObtenerValor("ConectionString"));
@@ -139,7 +139,7 @@ namespace asp_servicios.Controllers
                     return JsonConversor.ConvertirAString(respuesta);
                 }
 
-                var entidad = JsonConversor.ConvertirAObjeto<Barrios>(
+                var entidad = JsonConversor.ConvertirAObjeto<Detalles>(
                     JsonConversor.ConvertirAString(datos["Entidad"]));
 
                 this.iAplicacion!.Configurar(Configuracion.ObtenerValor("ConectionString"));
@@ -170,7 +170,7 @@ namespace asp_servicios.Controllers
                     return JsonConversor.ConvertirAString(respuesta);
                 }
 
-                var entidad = JsonConversor.ConvertirAObjeto<Barrios>(
+                var entidad = JsonConversor.ConvertirAObjeto<Detalles>(
                     JsonConversor.ConvertirAString(datos["Entidad"]));
 
                 this.iAplicacion!.Configurar(Configuracion.ObtenerValor("ConectionString"));
