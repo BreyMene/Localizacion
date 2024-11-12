@@ -23,7 +23,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "lib_aplicaciones", "lib_apl
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "asp_servicios", "asp_servicios\asp_servicios.csproj", "{FF8718A8-67C0-44E7-BEF4-2C662E390D0B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Comunicaciones", "Comunicaciones\Comunicaciones.csproj", "{973AA3C6-0C45-4064-8E63-AF55D4846755}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lib_comunicaciones", "Comunicaciones\lib_comunicaciones.csproj", "{973AA3C6-0C45-4064-8E63-AF55D4846755}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
