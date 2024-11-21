@@ -23,9 +23,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "lib_aplicaciones", "lib_apl
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "asp_servicios", "asp_servicios\asp_servicios.csproj", "{FF8718A8-67C0-44E7-BEF4-2C662E390D0B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lib_comunicaciones", "Comunicaciones\lib_comunicaciones.csproj", "{973AA3C6-0C45-4064-8E63-AF55D4846755}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "lib_comunicaciones", "Comunicaciones\lib_comunicaciones.csproj", "{973AA3C6-0C45-4064-8E63-AF55D4846755}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lib_presentaciones", "lib_presentaciones\lib_presentaciones.csproj", "{B4F3BDB1-4C68-481D-BBCD-E56359A6E998}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "lib_presentaciones", "lib_presentaciones\lib_presentaciones.csproj", "{B4F3BDB1-4C68-481D-BBCD-E56359A6E998}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "asp_presentacion", "asp_presentacion\asp_presentacion.csproj", "{CCC37A7C-EC63-4891-A4E2-5AAD7234B194}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -65,6 +67,10 @@ Global
 		{B4F3BDB1-4C68-481D-BBCD-E56359A6E998}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B4F3BDB1-4C68-481D-BBCD-E56359A6E998}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B4F3BDB1-4C68-481D-BBCD-E56359A6E998}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CCC37A7C-EC63-4891-A4E2-5AAD7234B194}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCC37A7C-EC63-4891-A4E2-5AAD7234B194}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCC37A7C-EC63-4891-A4E2-5AAD7234B194}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCC37A7C-EC63-4891-A4E2-5AAD7234B194}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -78,6 +84,7 @@ Global
 		{FF8718A8-67C0-44E7-BEF4-2C662E390D0B} = {1B898D14-8260-453C-8FBC-91104B1FF684}
 		{973AA3C6-0C45-4064-8E63-AF55D4846755} = {2133DCD8-FBBB-4765-A20E-9FE865269A80}
 		{B4F3BDB1-4C68-481D-BBCD-E56359A6E998} = {2133DCD8-FBBB-4765-A20E-9FE865269A80}
+		{CCC37A7C-EC63-4891-A4E2-5AAD7234B194} = {2133DCD8-FBBB-4765-A20E-9FE865269A80}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E48738A2-9B0F-4C5A-A8BE-166382B2F346}
