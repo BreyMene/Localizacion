@@ -11,7 +11,8 @@ namespace lib_entidades.Modelos
         public string? Nombre { get; set; }// Nombre del departamento
         public int Pais { get; set; }// Id del pais al que pertenece
 
-        [NotMapped] public Paises? _Pais { get; set; }// Instancia a Paises, no mapeada a la base de datos.
+        [NotMapped] public virtual ICollection<Ciudades>? Ciudades { get; set; }
+        [ForeignKey("Pais")] public Paises? _Pais { get; set; } // Instancia a Paises
 
         public bool Validar()
         {

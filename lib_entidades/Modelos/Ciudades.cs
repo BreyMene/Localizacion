@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -11,8 +10,8 @@ namespace lib_entidades.Modelos
         public string? Nombre { get; set; }// Nombre de la Ciudad
         public int Departamento { get; set; }// Id del departamento al que pertenece 
 
-        [NotMapped] public Departamentos? _Departamento { get; set; } // Instancia a Departamentos, no mapeada a la base de datos.
-
+        [NotMapped] public virtual ICollection<Barrios>? Barrios { get; set; }
+        [ForeignKey("Departamento")] public Departamentos? _Departamento { get; set; }
         public bool Validar()
         {
             if (string.IsNullOrEmpty(Nombre) || Departamento == 0)

@@ -49,7 +49,7 @@ namespace mst_pruebas.Repositorios
                 Cedula = "1111000",  // Cédula del Usuario
                 Nombre = "PRUEBA",    // Nombre del Usuario
                 Contrasena = "*****",  // Contraseña del Usuario 
-                Rol = "Admin"
+                Rol = 1
             };
 
             // Guarda la entidad en la base de datos usando el repositorio
@@ -83,7 +83,7 @@ namespace mst_pruebas.Repositorios
         private void Modificar()
         {
             // Cambia el rol del Usuario de "Admin" a "Comun"
-            entidad!.Rol = "Comun";
+            entidad!.Rol = 2;
 
             // Actualiza el Usuario en la base de datos
             entidad = iRepositorio!.Modificar(entidad!);

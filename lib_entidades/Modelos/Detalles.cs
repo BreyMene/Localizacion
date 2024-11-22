@@ -17,8 +17,8 @@ namespace lib_entidades.Modelos
         public int Ubicacion { get; set; }//Id de la ubicacion a la que pertenece
         public int Usuario { get; set; }// Id del Usuario a la que pertenece
 
-        [NotMapped] public Ubicaciones? _Ubicacion { get; set; }// Instancia a Ubicaciones, no mapeada a la base de datos.
-        [NotMapped] public Usuarios? _Usuario { get; set; }// Instancia a Usuarios, no mapeada a la base de datos.
+        [ForeignKey("Ubicacion")] public Ubicaciones? _Ubicacion { get; set; }
+        [ForeignKey("Usuario")] public Usuarios? _Usuario { get; set; }
 
         public bool Validar()
         {

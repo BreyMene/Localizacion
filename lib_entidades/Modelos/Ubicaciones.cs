@@ -14,9 +14,10 @@ namespace lib_entidades.Modelos
         public int Barrio { get; set; } //Id del Barrio al que pertenece
         public int Coordenada { get; set; } // Id de la coordenada a la que pertenece
 
-        [NotMapped] public Barrios? _Barrio { get; set; }// Instancia a Barrios , no mapeada a la base de datos.
-        [NotMapped] public Coordenadas? _Coordenada { get; set; }// Instancia a Coordenadas, no mapeada a la base de datos.
+        [ForeignKey("Barrio")] public Barrios? _Barrio{ get; set; }
+        [ForeignKey("Coordenada")] public Barrios? _Coordenada { get; set; }// Instancia a Coordenadas, no mapeada a la base de datos.
 
+        [NotMapped] public virtual ICollection<Detalles>? Detalles { get; set; }
         public bool Validar()
         {
             if (string.IsNullOrEmpty(Descripcion) ||
