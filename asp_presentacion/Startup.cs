@@ -18,10 +18,12 @@ namespace asp_presentacion
         {
             // Comunicaciones
             services.AddScoped<IPaisesComunicacion, PaisesComunicacion>();
+            services.AddScoped<IDepartamentosComunicacion, DepartamentosComunicacion>();
             services.AddScoped<IRolesComunicacion, RolesComunicacion>();
             // Presentaciones
             services.AddScoped<IPaisesPresentacion, PaisesPresentacion>();
             services.AddScoped<IRolesPresentacion, RolesPresentacion>();
+            services.AddScoped<IDepartamentosPresentacion, DepartamentosPresentacion>();
 
             services.AddControllers();
             services.AddEndpointsApiExplorer();
