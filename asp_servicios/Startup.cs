@@ -34,6 +34,7 @@ namespace asp_servicios
             services.AddScoped<ICoordenadasRepositorio, CoordenadasRepositorio>();
             services.AddScoped<IDetallesRepositorio, DetallesRepositorio>();
             services.AddScoped<IUbicacionesRepositorio, UbicacionesRepositorio>();
+            services.AddScoped<IRolesRepositorio, RolesRepositorio>();
             // Aplicaciones
             services.AddScoped<IPaisesAplicacion, PaisesAplicacion>();
             services.AddScoped<IDepartamentosAplicacion, DepartamentosAplicacion>();
@@ -43,6 +44,7 @@ namespace asp_servicios
             services.AddScoped<ICoordenadasAplicacion, CoordenadasAplicacion>();
             services.AddScoped<IDetallesAplicacion, DetallesAplicacion>();
             services.AddScoped<IUbicacionesAplicacion, UbicacionesAplicacion>();
+            services.AddScoped<IRolesAplicacion, RolesAplicacion>();
             // Controladores
             services.AddScoped<TokenController, TokenController>();
 
