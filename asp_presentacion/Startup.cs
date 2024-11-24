@@ -20,8 +20,10 @@ namespace asp_presentacion
             services.AddScoped<IPaisesComunicacion, PaisesComunicacion>();
             services.AddScoped<IDepartamentosComunicacion, DepartamentosComunicacion>();
             services.AddScoped<IRolesComunicacion, RolesComunicacion>();
+            services.AddScoped<ICoordenadasComunicacion, CoordenadasComunicacion>();
             // Presentaciones
             services.AddScoped<IPaisesPresentacion, PaisesPresentacion>();
+            services.AddScoped<ICoordenadasPresentacion, CoordenadasPresentacion>();
             services.AddScoped<IRolesPresentacion, RolesPresentacion>();
             services.AddScoped<IDepartamentosPresentacion, DepartamentosPresentacion>();
 
