@@ -27,7 +27,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "lib_comunicaciones", "Comun
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "lib_presentaciones", "lib_presentaciones\lib_presentaciones.csproj", "{B4F3BDB1-4C68-481D-BBCD-E56359A6E998}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "asp_presentacion", "asp_presentacion\asp_presentacion.csproj", "{CCC37A7C-EC63-4891-A4E2-5AAD7234B194}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "asp_presentacion", "asp_presentacion\asp_presentacion.csproj", "{CCC37A7C-EC63-4891-A4E2-5AAD7234B194}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

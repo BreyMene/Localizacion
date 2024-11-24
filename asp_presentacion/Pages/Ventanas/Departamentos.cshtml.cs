@@ -106,6 +106,7 @@ namespace asp_presentacion.Pages.Ventanas
             {
                 OnPostBtRefrescar();
                 Accion = Enumerables.Ventanas.Editar;
+                CargarPaises();
                 Actual = Lista!.FirstOrDefault(x => x.Id.ToString() == data);
             }
             catch (Exception ex)
@@ -141,6 +142,7 @@ namespace asp_presentacion.Pages.Ventanas
             {
                 OnPostBtRefrescar();
                 Accion = Enumerables.Ventanas.Borrar;
+                CargarPaises();
                 Actual = Lista!.FirstOrDefault(x => x.Id.ToString() == data);
             }
             catch (Exception ex)
@@ -153,6 +155,7 @@ namespace asp_presentacion.Pages.Ventanas
         {
             try
             {
+                CargarPaises();
                 var task = this.iPresentacion!.Borrar(Actual!);
                 Actual = task.Result;
                 OnPostBtRefrescar();
