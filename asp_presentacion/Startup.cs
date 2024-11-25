@@ -25,6 +25,7 @@ namespace asp_presentacion
             services.AddScoped<IRolesComunicacion, RolesComunicacion>();
             services.AddScoped<ICoordenadasComunicacion, CoordenadasComunicacion>();
             services.AddScoped<IUbicacionesComunicacion, UbicacionesComunicacion>();
+            services.AddScoped<IDetallesComunicacion, DetallesComunicacion>();
             // Presentaciones
             services.AddScoped<IPaisesPresentacion, PaisesPresentacion>();
             services.AddScoped<ICoordenadasPresentacion, CoordenadasPresentacion>();
@@ -34,6 +35,7 @@ namespace asp_presentacion
             services.AddScoped<ICiudadesPresentacion, CiudadesPresentacion>();
 			services.AddScoped<IBarriosPresentacion, BarriosPresentacion>();
             services.AddScoped<IUbicacionesPresentacion, UbicacionesPresentacion>();
+            services.AddScoped<IDetallesPresentacion, DetallesPresentacion>();
 
             services.AddControllers();
             services.AddEndpointsApiExplorer();

@@ -1,7 +1,7 @@
 ﻿@page
-@model asp_presentacion.Pages.Ventanas.UbicacionesModel
+@model asp_presentacion.Pages.Ventanas.DetallesModel
 @{
-    ViewData["Titulo"] = "Ubicaciones";
+    ViewData["Titulo"] = "Detalles";
 }
 
 <center>
@@ -11,7 +11,7 @@
 
             <div align="left">
                 <h3>
-                    Ubicaciones
+                    Detalles
                 </h3>
             </div>
 
@@ -47,90 +47,55 @@
             @if (Model.Accion == lib_utilidades.Enumerables.Ventanas.Borrar)
             {
                 <input type="hidden"
-                       asp-for="@Model.Actual!.Nombre" />
+                       asp-for="@Model.Actual!.Fecha" />
                 <input type="hidden"
-                       asp-for="@Model.Actual!.Descripcion" />
+                       asp-for="@Model.Actual!.Usuario" />
                 <input type="hidden"
-                       asp-for="@Model.Actual!.Imagen" />
-                <input type="hidden"
-                       asp-for="@Model.Actual!.Barrio" />
-                <input type="hidden"
-                       asp-for="@Model.Actual!.Coordenada" />
+                       asp-for="@Model.Actual!.Ubicacion" />
             }
 
             @if (Model.Accion == lib_utilidades.Enumerables.Ventanas.Editar)
             {
                 <div class="containers_vn panel panel-default">
                     <h3>
-                        Ubicacion
+                        Detalle
                     </h3>
 
                     <div>
-                        <!-- Campo Nombre del Ubicacion -->
+                        <!-- Campo Fecha del Detalle -->
                         <div class="form-group">
                             <label class="col-lg-4 control-label">
-                                Nombre
+                                Fecha
                             </label>
                             <div class="col-lg-6">
-                                <input id="nmNombre"
+                                <input id="nmFecha"
                                        class="cts_forms form-control"
-                                       asp-for="@Model.Actual!.Nombre" />
+                                       asp-for="@Model.Actual!.Fecha" />
                             </div>
                         </div>
-                        <!-- Campo Descripcion del Ubicacion -->
+                        <!-- Campo Usuario del Detalle -->
                         <div class="form-group">
                             <label class="col-lg-4 control-label">
-                                Descripcion
+                                Usuario
                             </label>
                             <div class="col-lg-6">
-                                <input id="nmDescripcion"
-                                       class="cts_forms form-control"
-                                       asp-for="@Model.Actual!.Descripcion" />
-                            </div>
-                        </div>
-                        <!-- Campo Imagen del Ubicacion -->
-                        <div class="form-group">
-                            <label class="col-lg-4 control-label">
-                                Imagen
-                            </label>
-                            <div class="col-lg-6">
-                                @if (Model.Actual!.Imagen != null)
-                                {
-                                    <img height="100"
-                                         width="100"
-                                         src="data:image;base64,
-                                            @System.Convert.ToBase64String(
-                                            lib_utilidades.EncodingHelper.ToBytes(
-                                            Model.Actual!.Imagen))" />
-                                }
-                                <input type="file"
-                                       class="form-control"
-                                       asp-for="FormFile" />
-                            </div>
-                        </div>
-                        <!-- Campo Barrio del Ubicacion -->
-                        <div class="form-group">
-                            <label class="col-lg-4 control-label">
-                                Barrio
-                            </label>
-                            <div class="col-lg-6">
-                                <select id="nmBarrio"
+                                <select id="nmUsuario"
                                         class="form-control"
-                                        asp-for="@Model.Actual!.Barrio"
-                                        asp-items="@(new SelectList(Model.Barrios, "Id", "Nombre"))">
+                                        asp-for="@Model.Actual!.Usuario"
+                                        asp-items="@(new SelectList(Model.Usuarios, "Id", "Nombre"))">
                                 </select>
                             </div>
                         </div>
-                        <!-- Campo Coordenada del Ubicacion -->
+                        <!-- Campo Ubicacion del Detalle -->
                         <div class="form-group">
                             <label class="col-lg-4 control-label">
-                                Coordenadas
+                                Ubicacion
                             </label>
                             <div class="col-lg-6">
-                                <select id="nmCoordenadas"
+                                <select id="nmUbicacion"
                                         class="form-control"
-                                        asp-for="@Model.Actual!.Coordenada"
-                                        asp-items="@(new SelectList(Model.Coordenadas, "Id", "Coord"))">
+                                        asp-for="@Model.Actual!.Ubicacion"
+                                        asp-items="@(new SelectList(Model.Ubicaciones, "Id", "Nombre"))">
                                 </select>
                             </div>
                         </div>
@@ -155,10 +120,10 @@
                                 Mensaje
                             </h2>
                             <h4 align="left">
-                                ¿Desea borrar el Ubicacion?
+                                ¿Desea borrar el Detalle?
                             </h4>
                             <h6 align="left">
-                                @Model.Actual!.Nombre
+                                @Model.Actual!.Fecha
                             </h6>
                             <br />
                             <input type="submit"
@@ -176,26 +141,20 @@
 
             @if (Model.Accion == lib_utilidades.Enumerables.Ventanas.Listas || Model.Accion == lib_utilidades.Enumerables.Ventanas.Borrar)
             {
-                <input id="flNombre" class="cts_forms form-control" asp-for="@Model.Filtro!.Nombre" placeholder="Nombre" />
+                <input id="flFecha" class="cts_forms form-control" asp-for="@Model.Filtro!.Fecha" placeholder="Fecha" />
                 <br />
 
                 <div class="containers_vn panel panel-default">
                     <table class="tb_data table table-striped table-bordered table-hover">
                         <tr>
                             <th>
-                                Nombre
+                                Fecha
                             </th>
                             <th>
-                                Descripcion
+                                Usuario
                             </th>
                             <th>
-                                Imagen
-                            </th>
-                            <th>
-                                Barrio
-                            </th>
-                            <th>
-                                Coordenada
+                                Ubicacion
                             </th>
                             <th>
                                 Accion
@@ -208,27 +167,13 @@
                             {
                                 <tr>
                                     <td>
-                                        @elemento.Nombre
+                                        @elemento.Fecha
                                     </td>
                                     <td class="cl_hidden">
-                                        @elemento.Descripcion
+                                        @Model.ConvertirUsuario(@elemento.Usuario)
                                     </td>
                                     <td class="cl_hidden">
-                                        @if (elemento.Imagen != null)
-                                        {
-                                            <img height="60"
-                                                 width="60"
-                                                 src="data:image;base64,
-                                                    @System.Convert.ToBase64String(
-                                                    lib_utilidades.EncodingHelper.ToBytes(
-                                                    elemento.Imagen))" />
-                                        }
-                                    </td>
-                                    <td class="cl_hidden">
-                                        @Model.ConvertirBarrio(@elemento.Barrio)
-                                    </td>
-                                    <td class="cl_hidden">
-                                        @Model.ConvertirCoordenada(@elemento.Coordenada)
+                                        @Model.ConvertirUbicacion(@elemento.Ubicacion)
                                     </td>
                                     <td>
                                         <input type="submit"
