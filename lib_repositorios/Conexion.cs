@@ -14,6 +14,7 @@ namespace lib_repositorios
             optionsBuilder.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
         }
 
+        protected DbSet<Auditorias>? Auditorias { get; set; }
         protected DbSet<Barrios>? Barrios { get; set; }
         protected DbSet<Ciudades>? Ciudades { get; set; }
         protected DbSet<Departamentos>? Departamentos { get; set; }

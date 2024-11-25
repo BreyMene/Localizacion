@@ -26,6 +26,7 @@ namespace asp_servicios
             services.AddSwaggerGen();
             services.AddScoped<Conexion, Conexion>();
             // Repositorios
+            services.AddScoped<IAuditoriasRepositorio, AuditoriasRepositorio>();
             services.AddScoped<IPaisesRepositorio, PaisesRepositorio>();
             services.AddScoped<IDepartamentosRepositorio, DepartamentosRepositorio>();
             services.AddScoped<ICiudadesRepositorio, CiudadesRepositorio>();
@@ -36,6 +37,7 @@ namespace asp_servicios
             services.AddScoped<IUbicacionesRepositorio, UbicacionesRepositorio>();
             services.AddScoped<IRolesRepositorio, RolesRepositorio>();
             // Aplicaciones
+            services.AddScoped<IAuditoriasAplicacion, AuditoriasAplicacion>();
             services.AddScoped<IPaisesAplicacion, PaisesAplicacion>();
             services.AddScoped<IDepartamentosAplicacion, DepartamentosAplicacion>();
             services.AddScoped<ICiudadesAplicacion, CiudadesAplicacion>();
