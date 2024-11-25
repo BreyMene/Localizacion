@@ -12,12 +12,14 @@ namespace asp_servicios.Controllers
     {
         private IBarriosAplicacion? iAplicacion = null;
         private TokenController? tokenController = null;
+        private AuditoriasController? Auditoria = null;
 
         public BarriosController(IBarriosAplicacion? iAplicacion,
-            TokenController tokenController)
+            TokenController tokenController, AuditoriasController Auditoria)
         {
             this.iAplicacion = iAplicacion;
             this.tokenController = tokenController;
+            this.Auditoria = Auditoria;
         }
 
         private Dictionary<string, object> ObtenerDatos()
@@ -43,6 +45,8 @@ namespace asp_servicios.Controllers
             var respuesta = new Dictionary<string, object>();
             try
             {
+                
+
                 var datos = ObtenerDatos();
                 if (!tokenController!.Validate(datos))
                 {
@@ -56,6 +60,7 @@ namespace asp_servicios.Controllers
                 respuesta["Respuesta"] = "OK";
                 respuesta["Fecha"] = DateTime.Now.ToString();
                 return JsonConversor.ConvertirAString(respuesta);
+
             }
             catch (Exception ex)
             {
@@ -70,6 +75,7 @@ namespace asp_servicios.Controllers
             var respuesta = new Dictionary<string, object>();
             try
             {
+
                 var datos = ObtenerDatos();
                 if (!tokenController!.Validate(datos))
                 {
