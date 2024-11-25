@@ -1,7 +1,7 @@
 ﻿@page
-@model asp_presentacion.Pages.Ventanas.UsuariosModel
+@model asp_presentacion.Pages.Ventanas.UbicacionesModel
 @{
-    ViewData["Titulo"] = "Usuarios";
+    ViewData["Titulo"] = "Ubicaciones";
 }
 
 <center>
@@ -11,7 +11,7 @@
 
             <div align="left">
                 <h3>
-                    Usuarios
+                    Ubicaciones
                 </h3>
             </div>
 
@@ -29,7 +29,8 @@
                 <input type="submit"
                        value="Guardar"
                        asp-page-handler="BtGuardar"
-                       class="btn btn-secondary" disabled="@(Model.Accion == lib_utilidades.Enumerables.Ventanas.Listas)" />
+                       class="btn btn-secondary"
+                       disabled="@(Model.Accion == lib_utilidades.Enumerables.Ventanas.Listas)" />
                 <input type="submit"
                        value="Cancelar"
                        asp-page-handler="BtCancelar"
@@ -46,35 +47,26 @@
             @if (Model.Accion == lib_utilidades.Enumerables.Ventanas.Borrar)
             {
                 <input type="hidden"
-                       asp-for="@Model.Actual!.Cedula" />
-                <input type="hidden"
                        asp-for="@Model.Actual!.Nombre" />
                 <input type="hidden"
-                       asp-for="@Model.Actual!.Contrasena" />
+                       asp-for="@Model.Actual!.Descripcion" />
                 <input type="hidden"
-                       asp-for="@Model.Actual!.Rol" />
+                       asp-for="@Model.Actual!.Imagen" />
+                <input type="hidden"
+                       asp-for="@Model.Actual!.Barrio" />
+                <input type="hidden"
+                       asp-for="@Model.Actual!.Coordenada" />
             }
 
             @if (Model.Accion == lib_utilidades.Enumerables.Ventanas.Editar)
             {
                 <div class="containers_vn panel panel-default">
                     <h3>
-                        Usuario
+                        Ubicacion
                     </h3>
 
                     <div>
-                        <!-- Campo Cedula del Usuario -->
-                        <div class="form-group">
-                            <label class="col-lg-4 control-label">
-                                Cedula
-                            </label>
-                            <div class="col-lg-6">
-                                <input id="nmCedula"
-                                       class="cts_forms form-control"
-                                       asp-for="@Model.Actual!.Cedula" />
-                            </div>
-                        </div>
-                        <!-- Campo Nombre del Usuario -->
+                        <!-- Campo Nombre del Ubicacion -->
                         <div class="form-group">
                             <label class="col-lg-4 control-label">
                                 Nombre
@@ -85,27 +77,74 @@
                                        asp-for="@Model.Actual!.Nombre" />
                             </div>
                         </div>
-                        <!-- Campo Contrasena del Usuario -->
+                        <!-- Campo Descripcion del Ubicacion -->
                         <div class="form-group">
                             <label class="col-lg-4 control-label">
-                                Contrasena
+                                Descripcion
                             </label>
                             <div class="col-lg-6">
-                                <input id="nmContrasena"
+                                <input id="nmDescripcion"
                                        class="cts_forms form-control"
-                                       asp-for="@Model.Actual!.Contrasena" />
+                                       asp-for="@Model.Actual!.Descripcion" />
                             </div>
                         </div>
-                        <!-- Campo Rol del Usuario -->
+                        <!-- Campo Imagen del Ubicacion -->
                         <div class="form-group">
                             <label class="col-lg-4 control-label">
-                                Rol
+                                Imagen
                             </label>
                             <div class="col-lg-6">
-                                <select id="nmRol"
+                                @if (Model.Actual!.Imagen != null)
+                                {
+                                    <img height="100"
+                                         width="100"
+                                         src="data:image;base64,
+                                            @System.Convert.ToBase64String(
+                                            lib_utilidades.EncodingHelper.ToBytes(
+                                            Model.Actual!.Imagen))" />
+                                }
+                                <input type="file"
+                                       class="form-control"
+                                       asp-for="FormFile" />
+                            </div>
+                        </div>
+                        <!-- Campo Barrio del Ubicacion -->
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">
+                                Barrio
+                            </label>
+                            <div class="col-lg-6">
+                                <select id="nmBarrio"
                                         class="form-control"
-                                        asp-for="@Model.Actual!.Rol"
-                                        asp-items="@(new SelectList(Model.Roles, "Id", "Nombre"))">
+                                        ConvertirCoordenada(@elemento.Coordenada)
+                                        asp-for="@Model.Actual!.Barrio"
+                                        asp-items="@(new SelectList(Model.Barrios, "Id", "Nombre"))">
+                                </select>
+                            </div>
+                        </div>
+                        <!-- Campo Coordenada del Ubicacion -->
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">
+                                Latitud
+                            </label>
+                            <div class="col-lg-6">
+                                <select id="nmLatitud"
+                                        class="form-control"
+                                        asp-for="@Model.Actual!.Coordenada"
+                                        asp-items="@(new SelectList(Model.Coordenadas, "Id", "Latitud"))">
+                                </select>
+                            </div>
+                        </div>
+                        <!-- Campo Coordenada del Ubicacion -->
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">
+                                Longitud
+                            </label>
+                            <div class="col-lg-6">
+                                <select id="nmLongitud"
+                                        class="form-control"
+                                        asp-for="@Model.Actual!.Coordenada"
+                                        asp-items="@(new SelectList(Model.Coordenadas, "Id", "Longitud"))">
                                 </select>
                             </div>
                         </div>
@@ -130,7 +169,7 @@
                                 Mensaje
                             </h2>
                             <h4 align="left">
-                                ¿Desea borrar el Usuario?
+                                ¿Desea borrar el Ubicacion?
                             </h4>
                             <h6 align="left">
                                 @Model.Actual!.Nombre
@@ -158,16 +197,19 @@
                     <table class="tb_data table table-striped table-bordered table-hover">
                         <tr>
                             <th>
-                                Cedula
-                            </th>
-                            <th>
                                 Nombre
                             </th>
                             <th>
-                                Contrasena
+                                Descripcion
                             </th>
                             <th>
-                                Rol
+                                Imagen
+                            </th>
+                            <th>
+                                Barrio
+                            </th>
+                            <th>
+                                Coordenada
                             </th>
                             <th>
                                 Accion
@@ -176,32 +218,43 @@
 
                         @if (Model != null && Model.Lista != null)
                         {
-                            @foreach (var Usuario in Model.Lista)
+                            @foreach (var elemento in Model.Lista)
                             {
                                 <tr>
-                                    <td class="cl_hidden">
-                                        @Usuario.Cedula
-                                    </td>
-                                    <td class="cl_hidden">
-                                        @Usuario.Nombre
-                                    </td>
-                                    <td class="cl_hidden">
-                                        @Usuario.Contrasena
-                                    </td>
                                     <td>
-                                        @Model.ConvertirRol(Usuario.Rol)
+                                        @elemento.Nombre
+                                    </td>
+                                    <td class="cl_hidden">
+                                        @elemento.Descripcion
+                                    </td>
+                                    <td class="cl_hidden">
+                                        @if (elemento.Imagen != null)
+                                        {
+                                            <img height="60"
+                                                 width="60"
+                                                 src="data:image;base64,
+                                                    @System.Convert.ToBase64String(
+                                                    lib_utilidades.EncodingHelper.ToBytes(
+                                                    elemento.Imagen))" />
+                                        }
+                                    </td>
+                                    <td class="cl_hidden">
+                                        @Model.ConvertirBarrio(@elemento.Barrio)
+                                    </td>
+                                    <td class="cl_hidden">
+                                        @Model.ConvertirCoordenada(@elemento.Coordenada)
                                     </td>
                                     <td>
                                         <input type="submit"
-                                               value="Modificar"
+                                               value="Modicar"
                                                asp-page-handler="BtModificar"
                                                class="btn btn-secondary"
-                                               asp-route-data="@Usuario.Id" />
+                                               asp-route-data="@elemento.Id" />
                                         <input type="submit"
                                                value="Borrar"
                                                asp-page-handler="BtBorrarVal"
                                                class="btn btn-secondary"
-                                               asp-route-data="@Usuario.Id" />
+                                               asp-route-data="@elemento.Id" />
                                     </td>
                                 </tr>
                             }

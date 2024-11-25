@@ -14,10 +14,26 @@
             </div>
 
             <div align="left" class="bt_panel_buttons">
-                <input type="submit" value="Refrescar" asp-page-handler="BtRefrescar" class="btn btn-secondary" disabled="@(Model.Accion != lib_utilidades.Enumerables.Ventanas.Listas)" />
-                <input type="submit" value="Nuevo" asp-page-handler="BtNuevo" class="btn btn-secondary" disabled="@(Model.Accion != lib_utilidades.Enumerables.Ventanas.Listas)" />
-                <input type="submit" value="Guardar" asp-page-handler="BtGuardar" class="btn btn-secondary" disabled="@(Model.Accion == lib_utilidades.Enumerables.Ventanas.Listas)" />
-                <input type="submit" value="Cancelar" asp-page-handler="BtCancelar" class="btn btn-secondary" disabled="@(Model.Accion == lib_utilidades.Enumerables.Ventanas.Listas)" />
+                <input type="submit"
+                    value="Refrescar"
+                    asp-page-handler="BtRefrescar"
+                    class="btn btn-secondary"
+                    disabled="@(Model.Accion != lib_utilidades.Enumerables.Ventanas.Listas)" />
+                <input type="submit"
+                    value="Nuevo"
+                    asp-page-handler="BtNuevo"
+                    class="btn btn-secondary"
+                    disabled="@(Model.Accion != lib_utilidades.Enumerables.Ventanas.Listas)" />
+                <input type="submit"
+                    value="Guardar"
+                    asp-page-handler="BtGuardar"
+                    class="btn btn-secondary"
+                    disabled="@(Model.Accion == lib_utilidades.Enumerables.Ventanas.Listas)" />
+                <input type="submit"
+                    value="Cancelar"
+                    asp-page-handler="BtCancelar"
+                    class="btn btn-secondary"
+                    disabled="@(Model.Accion == lib_utilidades.Enumerables.Ventanas.Listas)" />
             </div>
 
             @if (Model.Accion != lib_utilidades.Enumerables.Ventanas.Listas || Model.Accion == lib_utilidades.Enumerables.Ventanas.Borrar)
@@ -28,11 +44,9 @@
             @if (Model.Accion == lib_utilidades.Enumerables.Ventanas.Borrar)
             {
                 <input type="hidden"
-                       asp-for="@Model.Actual!.Id" />
-                <input type="hidden"
                        asp-for="@Model.Actual!.Nombre" />
                 <input type="hidden"
-                       asp-for="@Model.Actual!._Pais.Nombre" />
+                       asp-for="@Model.Actual!.Pais" />
             }
 
             @if (Model.Accion == lib_utilidades.Enumerables.Ventanas.Editar)
@@ -94,23 +108,29 @@
                 <div class="containers_vn panel panel-default">
                     <table class="tb_data table table-striped table-bordered table-hover">
                         <tr>
-                            <th>Id</th>
                             <th>Nombre</th>
                             <th>Pais</th>
                             <th>Acción</th>
                         </tr>
 
-                        @if (Model.Lista != null)
+                        @if (Model != null && Model.Lista != null)
                         {
                             @foreach (var depto in Model.Lista)
                             {
                                 <tr>
-                                    <td>@depto.Id</td>
                                     <td>@depto.Nombre</td>
                                     <td>@Model.ConvertirPais(depto.Pais)</td>
                                     <td>
-                                        <input type="submit" value="Modificar" asp-page-handler="BtModificar" class="btn btn-secondary" asp-route-data="@depto.Id" />
-                                        <input type="submit" value="Borrar" asp-page-handler="BtBorrarVal" class="btn btn-secondary" asp-route-data="@depto.Id" />
+                                        <input type="submit"
+                                            value="Modificar"
+                                            asp-page-handler="BtModificar"
+                                            class="btn btn-secondary"
+                                            asp-route-data="@depto.Id" />
+                                        <input type="submit"
+                                            value="Borrar"
+                                            asp-page-handler="BtBorrarVal"
+                                            class="btn btn-secondary"
+                                            asp-route-data="@depto.Id" />
                                     </td>
                                 </tr>
                             }

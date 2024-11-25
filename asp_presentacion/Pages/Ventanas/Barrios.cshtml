@@ -44,13 +44,10 @@
 
             @if (Model.Accion == lib_utilidades.Enumerables.Ventanas.Borrar)
             {
-                <input type="hidden"
-                       asp-for="@Model.Actual!.Id" />
-                <input type="hidden"
-                       asp-for="@Model.Actual!.Nombre" />
-                <input type="hidden"
-                       asp-for="@Model.Actual!._Ciudad.Nombre" />
+                <input type="hidden" asp-for="@Model.Actual!.Nombre" />
+                <input type="hidden" asp-for="@Model.Actual!.Ciudad" />
             }
+
 
             @if (Model.Accion == lib_utilidades.Enumerables.Ventanas.Editar)
             {
@@ -134,9 +131,6 @@
                     <table class="tb_data table table-striped table-bordered table-hover">
                         <tr>
                             <th>
-                                Id
-                            </th>
-                            <th>
                                 Nombre
                             </th>
                             <th>
@@ -147,31 +141,28 @@
                             </th>
                         </tr>
 
-                        @if (Model.Lista != null)
+                        @if (Model != null && Model.Lista != null)
                         {
-                            @foreach (var Ciudad in Model.Lista)
+                            @foreach (var elemento in Model.Lista)
                             {
                                 <tr>
                                     <td>
-                                        @Ciudad.Id
+                                        @elemento.Nombre
                                     </td>
-                                    <td>
-                                        @Ciudad.Nombre
-                                    </td>
-                                    <td>
-                                        @Model.ConvertirCiudad(Ciudad.Ciudad)
+                                    <td class="cl_hidden">
+                                        @Model.ConvertirCiudad(@elemento.Ciudad)
                                     </td>
                                     <td>
                                         <input type="submit"
-                                            value="Modificar"
-                                            asp-page-handler="BtModificar"
-                                            class="btn btn-secondary"
-                                            asp-route-data="@Ciudad.Id" />
+                                               value="Modicar"
+                                               asp-page-handler="BtModificar"
+                                               class="btn btn-secondary"
+                                               asp-route-data="@elemento.Id" />
                                         <input type="submit"
-                                            value="Borrar"
-                                            asp-page-handler="BtBorrarVal"
-                                            class="btn btn-secondary"
-                                            asp-route-data="@Ciudad.Id" />
+                                               value="Borrar"
+                                               asp-page-handler="BtBorrarVal"
+                                               class="btn btn-secondary"
+                                               asp-route-data="@elemento.Id" />
                                     </td>
                                 </tr>
                             }
