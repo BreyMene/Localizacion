@@ -10,14 +10,17 @@ namespace asp_servicios.Controllers
     [Route("[controller]/[action]")]
     public class DetallesController : ControllerBase
     {
+        private string Tabla = "Detalles";
         private IDetallesAplicacion? iAplicacion = null;
         private TokenController? tokenController = null;
+        private IAuditoriasAplicacion? Auditoria = null;
 
         public DetallesController(IDetallesAplicacion? iAplicacion,
-            TokenController tokenController)
+            TokenController tokenController, IAuditoriasAplicacion Auditoria)
         {
             this.iAplicacion = iAplicacion;
             this.tokenController = tokenController;
+            this.Auditoria = Auditoria;
         }
 
         private Dictionary<string, object> ObtenerDatos()
@@ -55,6 +58,9 @@ namespace asp_servicios.Controllers
 
                 respuesta["Respuesta"] = "OK";
                 respuesta["Fecha"] = DateTime.Now.ToString();
+
+                this.Auditoria!.Guardar(new Auditorias() { Tabla = Tabla, Referencia = "Elementos listados", Accion = "Listar", Fecha = DateTime.Now });
+                
                 return JsonConversor.ConvertirAString(respuesta);
             }
             catch (Exception ex)
@@ -86,6 +92,9 @@ namespace asp_servicios.Controllers
 
                 respuesta["Respuesta"] = "OK";
                 respuesta["Fecha"] = DateTime.Now.ToString();
+
+                this.Auditoria!.Guardar(new Auditorias() { Tabla = Tabla, Referencia = entidad.Id.ToString(), Accion = "Buscar", Fecha = DateTime.Now });
+                
                 return JsonConversor.ConvertirAString(respuesta);
             }
             catch (Exception ex)
@@ -117,6 +126,9 @@ namespace asp_servicios.Controllers
                 respuesta["Entidad"] = entidad;
                 respuesta["Respuesta"] = "OK";
                 respuesta["Fecha"] = DateTime.Now.ToString();
+
+                this.Auditoria!.Guardar(new Auditorias() { Tabla = Tabla, Referencia = entidad.Id.ToString(), Accion = "Guardar", Fecha = DateTime.Now });
+                
                 return JsonConversor.ConvertirAString(respuesta);
             }
             catch (Exception ex)
@@ -148,6 +160,9 @@ namespace asp_servicios.Controllers
                 respuesta["Entidad"] = entidad;
                 respuesta["Respuesta"] = "OK";
                 respuesta["Fecha"] = DateTime.Now.ToString();
+
+                this.Auditoria!.Guardar(new Auditorias() { Tabla = Tabla, Referencia = entidad.Id.ToString(), Accion = "Modificar", Fecha = DateTime.Now });
+                
                 return JsonConversor.ConvertirAString(respuesta);
             }
             catch (Exception ex)
@@ -179,6 +194,9 @@ namespace asp_servicios.Controllers
                 respuesta["Entidad"] = entidad;
                 respuesta["Respuesta"] = "OK";
                 respuesta["Fecha"] = DateTime.Now.ToString();
+
+                this.Auditoria!.Guardar(new Auditorias() { Tabla = Tabla, Referencia = entidad.Id.ToString(), Accion = "Borrar", Fecha = DateTime.Now });
+                
                 return JsonConversor.ConvertirAString(respuesta);
             }
             catch (Exception ex)
