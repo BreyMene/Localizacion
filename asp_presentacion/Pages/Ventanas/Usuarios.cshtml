@@ -1,19 +1,21 @@
 ﻿@page
-@model asp_presentacion.Pages.Ventanas.RolesModel
+@model asp_presentacion.Pages.Ventanas.UsuariosModel
 @{
-    ViewData["Titulo"] = "Roles";
+    ViewData["Titulo"] = "Usuarios";
 }
+
 <center>
     <div>
-        <form method="POST"
-              enctype="multipart/form-data">
+        <form method="POST" enctype="multipart/form-data">
             @Html.AntiForgeryToken()
 
             <div align="left">
-                <h3>Roles</h3>
+                <h3>
+                    Usuarios
+                </h3>
             </div>
-            <div align="left"
-                 class="bt_panel_buttons">
+
+            <div align="left" class="bt_panel_buttons">
                 <input type="submit"
                        value="Refrescar"
                        asp-page-handler="BtRefrescar"
@@ -27,8 +29,7 @@
                 <input type="submit"
                        value="Guardar"
                        asp-page-handler="BtGuardar"
-                       class="btn btn-secondary"
-                       disabled="@(Model.Accion == lib_utilidades.Enumerables.Ventanas.Listas)" />
+                       class="btn btn-secondary" disabled="@(Model.Accion == lib_utilidades.Enumerables.Ventanas.Listas)" />
                 <input type="submit"
                        value="Cancelar"
                        asp-page-handler="BtCancelar"
@@ -36,34 +37,52 @@
                        disabled="@(Model.Accion == lib_utilidades.Enumerables.Ventanas.Listas)" />
             </div>
 
-            @if (Model.Accion != lib_utilidades.Enumerables.Ventanas.Listas ||
-            Model.Accion == lib_utilidades.Enumerables.Ventanas.Borrar)
+            @if (Model.Accion != lib_utilidades.Enumerables.Ventanas.Listas || Model.Accion == lib_utilidades.Enumerables.Ventanas.Borrar)
             {
-                <input type="hidden"
-                       asp-for="@Model.Actual!.Id" />
+                <input type="hidden" asp-for="@Model.Actual!.Id" />
             }
+
             @if (Model.Accion == lib_utilidades.Enumerables.Ventanas.Borrar)
             {
                 <input type="hidden"
                        asp-for="@Model.Actual!.Id" />
                 <input type="hidden"
                        asp-for="@Model.Actual!.Nombre" />
+                <input type="hidden"
+                       asp-for="@Model.Actual!._Rol.Nombre" />
             }
 
             @if (Model.Accion == lib_utilidades.Enumerables.Ventanas.Editar)
             {
                 <div class="containers_vn panel panel-default">
-                    <h3>Rol</h3>
+                    <h3>
+                        Usuario
+                    </h3>
 
                     <div>
+                        <!-- Campo Nombre del Usuario -->
                         <div class="form-group">
                             <label class="col-lg-4 control-label">
                                 Nombre
                             </label>
                             <div class="col-lg-6">
-                                <input nombre="nmNombre"
+                                <input id="nmNombre"
                                        class="cts_forms form-control"
                                        asp-for="@Model.Actual!.Nombre" />
+                            </div>
+                        </div>
+
+                        <!-- Campo Rol del Usuario -->
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">
+                                Rol
+                            </label>
+                            <div class="col-lg-6">
+                                <select id="nmRol"
+                                        class="form-control"
+                                        asp-for="@Model.Actual!.Rol"
+                                        asp-items="@(new SelectList(Model.Roles, "Id", "Nombre"))">
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -86,14 +105,12 @@
                             <h2 align="left">
                                 Mensaje
                             </h2>
-
                             <h4 align="left">
-                                Desea borrar la entidad?
+                                ¿Desea borrar el Usuario?
                             </h4>
                             <h6 align="left">
                                 @Model.Actual!.Nombre
                             </h6>
-                            <br />
                             <br />
                             <input type="submit"
                                    value="Borrar"
@@ -108,13 +125,9 @@
                 </div>
             }
 
-            @if (Model.Accion == lib_utilidades.Enumerables.Ventanas.Listas ||
-            Model.Accion == lib_utilidades.Enumerables.Ventanas.Borrar)
+            @if (Model.Accion == lib_utilidades.Enumerables.Ventanas.Listas || Model.Accion == lib_utilidades.Enumerables.Ventanas.Borrar)
             {
-                <input id="flNombre"
-                       class="cts_forms form-control"
-                       asp-for="@Model.Filtro!.Nombre"
-                       placeholder="Nombre" />
+                <input id="flNombre" class="cts_forms form-control" asp-for="@Model.Filtro!.Nombre" placeholder="Nombre" />
                 <br />
 
                 <div class="containers_vn panel panel-default">
@@ -123,35 +136,42 @@
                             <th>
                                 Id
                             </th>
-                            <th class="cl_hidden">
+                            <th>
                                 Nombre
                             </th>
-                            <th class="cl_actions">
+                            <th>
+                                Rol
+                            </th>
+                            <th>
                                 Accion
                             </th>
                         </tr>
-                        @if (Model != null && Model.Lista != null)
+
+                        @if (Model.Lista != null)
                         {
-                            @foreach (var elemento in Model.Lista)
+                            @foreach (var Rol in Model.Lista)
                             {
                                 <tr>
                                     <td>
-                                        @elemento.Id
+                                        @Rol.Id
                                     </td>
-                                    <td class="cl_hidden">
-                                        @elemento.Nombre
+                                    <td>
+                                        @Rol.Nombre
+                                    </td>
+                                    <td>
+                                        @Model.ConvertirRol(Rol.Rol)
                                     </td>
                                     <td>
                                         <input type="submit"
                                                value="Modificar"
                                                asp-page-handler="BtModificar"
                                                class="btn btn-secondary"
-                                               asp-route-data="@elemento.Id" />
+                                               asp-route-data="@Rol.Id" />
                                         <input type="submit"
                                                value="Borrar"
                                                asp-page-handler="BtBorrarVal"
                                                class="btn btn-secondary"
-                                               asp-route-data="@elemento.Id" />
+                                               asp-route-data="@Rol.Id" />
                                     </td>
                                 </tr>
                             }

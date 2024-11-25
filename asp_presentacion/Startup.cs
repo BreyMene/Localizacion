@@ -20,16 +20,20 @@ namespace asp_presentacion
             services.AddScoped<IPaisesComunicacion, PaisesComunicacion>();
             services.AddScoped<IDepartamentosComunicacion, DepartamentosComunicacion>();
             services.AddScoped<ICiudadesComunicacion, CiudadesComunicacion>();
+            services.AddScoped<IBarriosComunicacion, BarriosComunicacion>();
+            services.AddScoped<IUsuariosComunicacion, UsuariosComunicacion>();
             services.AddScoped<IRolesComunicacion, RolesComunicacion>();
             services.AddScoped<ICoordenadasComunicacion, CoordenadasComunicacion>();
             // Presentaciones
             services.AddScoped<IPaisesPresentacion, PaisesPresentacion>();
             services.AddScoped<ICoordenadasPresentacion, CoordenadasPresentacion>();
+            services.AddScoped<IUsuariosPresentacion, UsuariosPresentacion>();
             services.AddScoped<IRolesPresentacion, RolesPresentacion>();
             services.AddScoped<IDepartamentosPresentacion, DepartamentosPresentacion>();
             services.AddScoped<ICiudadesPresentacion, CiudadesPresentacion>();
+			services.AddScoped<IBarriosPresentacion, BarriosPresentacion>();
 
-            services.AddControllers();
+			services.AddControllers();
             services.AddEndpointsApiExplorer();
             services.AddRazorPages();
             services.AddSession(options =>
