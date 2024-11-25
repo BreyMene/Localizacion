@@ -86,7 +86,7 @@ namespace asp_presentacion.Pages.Ventanas
                 LogConversor.Log(ex, ViewData!);
             }
         }
-        public string ConvertirCiudad(int id)
+        public string ConvertirRol(int id)
         {
             try
             {

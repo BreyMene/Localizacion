@@ -11,7 +11,7 @@ namespace lib_entidades.Modelos
         public string? Cedula { get; set; } //Cedula del Usuario
         public string? Nombre { get; set; }// Nombre del Usuario
         public string? Contrasena { get; set; } //Contraseña del Usuario (tipo password)
-        public int? Rol { get; set; } // Rol del usuario (administrador, comun)
+        public int Rol { get; set; } // Rol del usuario (administrador, comun)
         [ForeignKey("Rol")] public Roles? _Rol{ get; set; }
 
         [NotMapped] public virtual ICollection<Detalles>? Detalles{ get; set; }

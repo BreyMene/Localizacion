@@ -37,7 +37,8 @@
                        disabled="@(Model.Accion == lib_utilidades.Enumerables.Ventanas.Listas)" />
             </div>
 
-            @if (Model.Accion != lib_utilidades.Enumerables.Ventanas.Listas || Model.Accion == lib_utilidades.Enumerables.Ventanas.Borrar)
+            @if (Model.Accion != lib_utilidades.Enumerables.Ventanas.Listas ||
+            Model.Accion == lib_utilidades.Enumerables.Ventanas.Borrar)
             {
                 <input type="hidden" asp-for="@Model.Actual!.Id" />
             }
@@ -47,7 +48,11 @@
                 <input type="hidden"
                        asp-for="@Model.Actual!.Id" />
                 <input type="hidden"
+                       asp-for="@Model.Actual!.Cedula" />
+                <input type="hidden"
                        asp-for="@Model.Actual!.Nombre" />
+                <input type="hidden"
+                       asp-for="@Model.Actual!.Contrasena" />
                 <input type="hidden"
                        asp-for="@Model.Actual!._Rol.Nombre" />
             }
@@ -60,6 +65,17 @@
                     </h3>
 
                     <div>
+                        <!-- Campo Cedula del Usuario -->
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">
+                                Cedula
+                            </label>
+                            <div class="col-lg-6">
+                                <input id="nmCedula"
+                                       class="cts_forms form-control"
+                                       asp-for="@Model.Actual!.Cedula" />
+                            </div>
+                        </div>
                         <!-- Campo Nombre del Usuario -->
                         <div class="form-group">
                             <label class="col-lg-4 control-label">
@@ -71,7 +87,17 @@
                                        asp-for="@Model.Actual!.Nombre" />
                             </div>
                         </div>
-
+                        <!-- Campo Contrasena del Usuario -->
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">
+                                Contrasena
+                            </label>
+                            <div class="col-lg-6">
+                                <input id="nmContrasena"
+                                       class="cts_forms form-control"
+                                       asp-for="@Model.Actual!.Contrasena" />
+                            </div>
+                        </div>
                         <!-- Campo Rol del Usuario -->
                         <div class="form-group">
                             <label class="col-lg-4 control-label">
@@ -137,7 +163,13 @@
                                 Id
                             </th>
                             <th>
+                                Cedula
+                            </th>
+                            <th>
                                 Nombre
+                            </th>
+                            <th>
+                                Contrasena
                             </th>
                             <th>
                                 Rol
@@ -155,8 +187,14 @@
                                     <td>
                                         @Rol.Id
                                     </td>
-                                    <td>
+                                    <td class="cl_hidden">
+                                        @Rol.Cedula
+                                    </td>
+                                    <td class="cl_hidden">
                                         @Rol.Nombre
+                                    </td>
+                                    <td class="cl_hidden">
+                                        @Rol.Contrasena
                                     </td>
                                     <td>
                                         @Model.ConvertirRol(Rol.Rol)
