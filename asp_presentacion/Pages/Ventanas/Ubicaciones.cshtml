@@ -125,26 +125,13 @@
                         <!-- Campo Coordenada del Ubicacion -->
                         <div class="form-group">
                             <label class="col-lg-4 control-label">
-                                Latitud
+                                Coordenadas
                             </label>
                             <div class="col-lg-6">
-                                <select id="nmLatitud"
+                                <select id="nmCoordenadas"
                                         class="form-control"
                                         asp-for="@Model.Actual!.Coordenada"
-                                        asp-items="@(new SelectList(Model.Coordenadas, "Id", "Latitud"))">
-                                </select>
-                            </div>
-                        </div>
-                        <!-- Campo Coordenada del Ubicacion -->
-                        <div class="form-group">
-                            <label class="col-lg-4 control-label">
-                                Longitud
-                            </label>
-                            <div class="col-lg-6">
-                                <select id="nmLongitud"
-                                        class="form-control"
-                                        asp-for="@Model.Actual!.Coordenada"
-                                        asp-items="@(new SelectList(Model.Coordenadas, "Id", "Longitud"))">
+                                        asp-items="@(new SelectList(Model.Coordenadas, "Id", "Coord"))">
                                 </select>
                             </div>
                         </div>
