@@ -46,11 +46,11 @@ namespace asp_presentacion.Pages.Ventanas
                 var variable_session = HttpContext.Session.GetString("key");
                 if (String.IsNullOrEmpty(variable_session))
                     HttpContext.Session.SetString("key", "Pruebas");
-
-                Filtro!.Fecha = Filtro!.Fecha ?? null;
+                Filtro!._Usuario = Filtro!._Usuario ?? new Usuarios();
+                Filtro!._Usuario.Nombre = Filtro!._Usuario.Nombre ?? "";
 
                 Accion = Enumerables.Ventanas.Listas;
-                var task = this.iPresentacion!.Buscar(Filtro!, "FECHA");
+                var task = this.iPresentacion!.Buscar(Filtro!, "USUARIO");
                 task.Wait();
                 Lista = task.Result;
 

@@ -141,7 +141,7 @@
 
             @if (Model.Accion == lib_utilidades.Enumerables.Ventanas.Listas || Model.Accion == lib_utilidades.Enumerables.Ventanas.Borrar)
             {
-                <input id="flFecha" class="cts_forms form-control" asp-for="@Model.Filtro!.Fecha" placeholder="Fecha" />
+                <input id="flUsuario" class="cts_forms form-control" asp-for="@Model.Filtro!._Usuario.Nombre" placeholder="Usuario" />
                 <br />
 
                 <div class="containers_vn panel panel-default">
