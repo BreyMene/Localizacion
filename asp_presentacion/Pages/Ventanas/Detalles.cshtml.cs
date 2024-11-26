@@ -53,11 +53,7 @@ namespace asp_presentacion.Pages.Ventanas
                 var task = this.iPresentacion!.Buscar(Filtro!, "FECHA");
                 task.Wait();
                 Lista = task.Result;
-                // Debug: Verifica si Lista contiene datos.
-                if (Lista == null || !Lista.Any())
-                {
-                    Console.WriteLine("No se encontraron datos con el filtro proporcionado.");
-                }
+
                 CargarUsuarios();
                 CargarUbicaciones();
                 Actual = null;
