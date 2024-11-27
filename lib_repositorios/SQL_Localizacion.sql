@@ -96,3 +96,11 @@ CREATE TABLE [Detalles] (
 	CONSTRAINT FK_Detalles_Usuarios FOREIGN KEY ([Usuario]) REFERENCES [Usuarios] ([ID]) ON DELETE No Action ON UPDATE No Action --constraint de Foreign key entre Detalles y Usuarios, evitando borrado en cascada
 );
 GO
+
+CREATE TABLE [Auditorias] (
+	[ID] INT NOT NULL IDENTITY (1,1),
+	[Tabla] NVARCHAR (20) NOT NULL,
+	[Referencia] NVARCHAR (20) NOT NULL,
+	[Accion] NVARCHAR (20) NOT NULL,
+	[Fecha] SMALLDATETIME NOT NULL DEFAULT GETDATE()
+);
