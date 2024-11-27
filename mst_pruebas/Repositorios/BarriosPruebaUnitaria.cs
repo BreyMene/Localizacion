@@ -25,7 +25,7 @@ namespace mst_pruebas.Repositorios
             // Se define la cadena de conexión para la base de datos SQL Server
             conexion.StringConnection = Configuracion.ObtenerValor("ConectionString");
 
-            // Se inicializa el repositorio de barrios con la conexión a la base de datos
+            // Se inicializa el repositorio de Barrios con la conexión a la base de datos
             iRepositorio = new BarriosRepositorio(conexion);
         }
 
@@ -60,7 +60,7 @@ namespace mst_pruebas.Repositorios
         // Método que prueba la funcionalidad de listar todas las entidades Barrios
         private void Listar()
         {
-            // Obtiene una lista de todos los barrios
+            // Obtiene una lista de todos los Barrios
             var lista = iRepositorio!.Listar();
 
             // Verifica que la lista tenga al menos un elemento (lo que indica que se ha recuperado correctamente)
