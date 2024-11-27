@@ -1,7 +1,7 @@
 ﻿@page
-@model asp_presentacion.Pages.Ventanas.RolesModel
+@model asp_presentacion.Pages.Ventanas.CoordenadasModel
 @{
-    ViewData["Titulo"] = "Roles";
+    ViewData["Titulo"] = "Coordenadas";
 }
 <center>
     <div>
@@ -10,7 +10,7 @@
             @Html.AntiForgeryToken()
 
             <div align="left">
-                <h3>Roles</h3>
+                <h3>Coordenadas</h3>
             </div>
             <div align="left"
                  class="bt_panel_buttons">
@@ -47,25 +47,39 @@
                 <input type="hidden"
                        asp-for="@Model.Actual!.Id" />
                 <input type="hidden"
-                       asp-for="@Model.Actual!.Nombre" />
+                       asp-for="@Model.Actual!.Latitud" />
+                <input type="hidden"
+                       asp-for="@Model.Actual!.Longitud" />
             }
 
             @if (Model.Accion == lib_utilidades.Enumerables.Ventanas.Editar)
             {
                 <div class="containers_vn panel panel-default">
-                    <h3>Rol</h3>
+                    <h3>Coordenada</h3>
 
                     <div>
                         <div class="form-group">
                             <label class="col-lg-4 control-label">
-                                Nombre
+                                Latitud
                             </label>
                             <div class="col-lg-6">
-                                <input nombre="nmNombre"
+                                <input Latitud="nmLatitud"
                                        class="cts_forms form-control"
-                                       asp-for="@Model.Actual!.Nombre" />
+                                       asp-for="@Model.Actual!.Latitud" />
                             </div>
                         </div>
+                        <div>
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">
+                                Longitud
+                            </label>
+                            <div class="col-lg-6">
+                                <input Longitud="nmLongitud"
+                                       class="cts_forms form-control"
+                                       asp-for="@Model.Actual!.Longitud" />
+                            </div>
+                        </div>
+                    </div>
                     </div>
                 </div>
             }
@@ -88,10 +102,13 @@
                             </h2>
 
                             <h4 align="left">
-                                Desea borrar la entidad?
+                                Desea borrar la Coordenada?
                             </h4>
                             <h6 align="left">
-                                @Model.Actual!.Nombre
+                                @Model.Actual!.Latitud 
+                            </h6>
+                            <h6 align="left">
+                                @Model.Actual!.Longitud
                             </h6>
                             <br />
                             <br />
@@ -111,10 +128,10 @@
             @if (Model.Accion == lib_utilidades.Enumerables.Ventanas.Listas ||
             Model.Accion == lib_utilidades.Enumerables.Ventanas.Borrar)
             {
-                <input id="flNombre"
+                <input id="flLatitud"
                        class="cts_forms form-control"
-                       asp-for="@Model.Filtro!.Nombre"
-                       placeholder="Nombre" />
+                       asp-for="@Model.Filtro!.Latitud"
+                       placeholder="Latitud" />
                 <br />
 
                 <div class="containers_vn panel panel-default">
@@ -124,7 +141,10 @@
                                 Id
                             </th>
                             <th class="cl_hidden">
-                                Nombre
+                                Latitud
+                            </th>
+                            <th class="cl_hidden">
+                                Longitud
                             </th>
                             <th class="cl_actions">
                                 Accion
@@ -139,7 +159,10 @@
                                         @elemento.Id
                                     </td>
                                     <td class="cl_hidden">
-                                        @elemento.Nombre
+                                        @elemento.Latitud
+                                    </td>
+                                    <td class="cl_hidden">
+                                        @elemento.Longitud
                                     </td>
                                     <td>
                                         <input type="submit"

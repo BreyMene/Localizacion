@@ -11,6 +11,7 @@ namespace lib_entidades.Modelos
         [Key] public int Id { get; set; } // Id de la coordenada (Llave)
         public string? Latitud { get; set; } // Latitud de la coordenada (de norte a sur)
         public string? Longitud { get; set; }//Longitud horizontal (De este a oeste)
+        public string? Coord => $"{Latitud} , {Longitud}"; //Coordenada final
         [NotMapped] public virtual ICollection<Ubicaciones>? Ubicaciones{ get; set; }
         public bool Validar()
         {

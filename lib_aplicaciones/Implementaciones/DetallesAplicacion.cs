@@ -54,7 +54,7 @@ namespace lib_aplicaciones.Implementaciones
             Expression<Func<Detalles, bool>>? condiciones = null;
             switch (tipo.ToUpper())
             {
-                case "USUARIO": condiciones = x => x.Usuario == entidad.Usuario; break;
+                case "USUARIO": condiciones = x => x._Usuario.Nombre.Contains(entidad._Usuario.Nombre); break;
                 case "FECHA": condiciones = x => x.Fecha == entidad.Fecha; break;
                 case "UBICACION": condiciones = x => x.Ubicacion == entidad.Ubicacion; break;
                 default: condiciones = x => x.Id == entidad.Id; break;
