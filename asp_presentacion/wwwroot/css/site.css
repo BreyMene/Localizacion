@@ -145,3 +145,117 @@ body {
     margin: auto;
     background: white;
 }
+
+/* Fondo general de la página */
+body {
+    background-color: #e0e0e0; /* Gris claro */
+    color: #333; /* Color de texto oscuro para contraste */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Diseño del Navbar (gris tenue) */
+/* Barra de navegación con color más oscuro */
+.navbar {
+    background-color: #343a40; /* Fondo gris oscuro */
+    color: #343a40; /* Texto blanco */
+}
+
+.navbar .navbar-nav .nav-link {
+        color: #343a40 !important; /* Los enlaces serán blancos */
+}
+
+.navbar .navbar-nav .nav-link:hover {
+color: #007bff !important; /* Cambiar color a azul cuando se pasa el ratón por encima */
+}
+
+/* Estilo de los botones en la barra de navegación */
+.btn-primary {
+    color: #343a40;
+    background-color: #343a40; /* Fondo oscuro para los botones */
+    border-color: #23272b; /* Bordes oscuros */
+}
+
+    .btn-primary:hover {
+        background-color: #23272b; /* Oscurecer más el botón cuando se pasa el ratón */
+        border-color: #1d2124; /* Oscurecer el borde al pasar el ratón */
+    }
+
+
+
+/* Botones oscuros */
+.btn-primary {
+    color: #fff;
+    background-color: #343a40; /* Color oscuro para el fondo */
+    border-color: #23272b; /* Color oscuro para el borde */
+}
+
+    .btn-primary:hover {
+        background-color: #23272b; /* Se oscurece más al pasar el ratón */
+        border-color: #1d2124;
+    }
+
+/* Enlaces en el menú de navegación */
+a {
+    color: #007bff;
+}
+
+    a:hover {
+        color: #0056b3; /* Color de texto más oscuro al pasar el ratón */
+        text-decoration: none; /* Evitar subrayado */
+    }
+
+/* Fondo y estilo del pie de página */
+.footer {
+    background-color: #343a40; /* Fondo gris oscuro */
+    color: dimgray;
+    text-align: center;
+    padding: 8px 0; /* Reducir el padding para disminuir el tamaño vertical */
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    line-height: 30px; /* Reducir la altura de las líneas de texto */
+}
+
+    /* Mejorar la apariencia de los enlaces en el pie */
+    .footer a {
+        color: #ffd700;
+    }
+
+        .footer a:hover {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+    
+    .footer.privacy a {
+        color: #ffd700;
+    }
+
+/* Bordes */
+.border-top, .border-bottom {
+    border-color: #e5e5e5;
+}
+
+.box-shadow {
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .1); /* Más sombra para dar profundidad */
+}
+
+/* Diseño de los botones (para aceptación de política) */
+button.accept-policy {
+    font-size: 1.1rem;
+    background-color: #28a745;
+    border-color: #218838;
+    color: white;
+}
+
+    button.accept-policy:hover {
+        background-color: #218838;
+        border-color: #1c7430;
+    }
+
+/* Responsividad: Aseguramos que el layout se vea bien en pantallas pequeñas */
+@media (max-width: 768px) {
+
+    .footer {
+        font-size: 0.9rem;
+    }
+}
