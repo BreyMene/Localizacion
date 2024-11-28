@@ -1,0 +1,58 @@
+﻿@page
+@model asp_presentacion.Pages.Ventanas.MapaModel
+@{
+    ViewData["Title"] = "Mapa de Ubicaciones";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<style>
+    #map {
+        height: 500px; /* Altura fija del mapa */
+        width: 100%; /* Ancho completo del contenedor */
+    }
+</style>
+
+<div id="map"></div>
+
+@section Scripts {
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+              integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+        <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+                integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="">
+        </script>
+
+        <!-- Buscador -->
+        <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () 
+            {
+                // Crear el mapa centrado en un punto por defecto
+                var map = L.map('map').setView([0, 0], 2); // Coordenadas iniciales de ejemplo
+
+                // Agregar capa base de OpenStreetMap
+                L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                }).addTo(map);
+
+                // Agregar el buscador de coordenadas
+                L.Control.geocoder().addTo(map);
+
+                // Agregar los marcadores para las coordenadas obtenidas desde el modelo
+        @if (Model.ListaCoordenadas != null)
+        {
+            foreach (var coordenada in Model.ListaCoordenadas)
+            {
+                <text>
+                                                L.marker([@coordenada.Latitud, @coordenada.Longitud])
+                                                    .addTo(map);
+                </text>
+            }
+        }
+            });
+        </script>
+}
+
