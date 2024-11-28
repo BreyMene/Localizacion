@@ -17,6 +17,7 @@ namespace asp_presentacion
         public void ConfigureServices(WebApplicationBuilder builder, IServiceCollection services)
         {
             // Comunicaciones
+            services.AddScoped<IAuditoriasComunicacion, AuditoriasComunicacion>();
             services.AddScoped<IPaisesComunicacion, PaisesComunicacion>();
             services.AddScoped<IDepartamentosComunicacion, DepartamentosComunicacion>();
             services.AddScoped<ICiudadesComunicacion, CiudadesComunicacion>();
@@ -27,6 +28,7 @@ namespace asp_presentacion
             services.AddScoped<IUbicacionesComunicacion, UbicacionesComunicacion>();
             services.AddScoped<IDetallesComunicacion, DetallesComunicacion>();
             // Presentaciones
+            services.AddScoped<IAuditoriasPresentacion, AuditoriasPresentacion>();
             services.AddScoped<IPaisesPresentacion, PaisesPresentacion>();
             services.AddScoped<ICoordenadasPresentacion, CoordenadasPresentacion>();
             services.AddScoped<IUsuariosPresentacion, UsuariosPresentacion>();

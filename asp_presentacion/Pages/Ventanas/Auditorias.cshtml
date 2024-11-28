@@ -1,0 +1,102 @@
+﻿@page
+@model asp_presentacion.Pages.Ventanas.AuditoriasModel
+@{
+    ViewData["Titulo"] = "Auditorias";
+}
+<center>
+    <div>
+        <form method="POST"
+              enctype="multipart/form-data">
+            @Html.AntiForgeryToken()
+
+            <div align="left">
+                <h3>Auditorias</h3>
+            </div>
+            <div align="left"
+                 class="bt_panel_buttons">
+                <input type="submit"
+                       value="Refrescar"
+                       asp-page-handler="BtRefrescar"
+                       class="btn btn-secondary"
+                       disabled="@(Model.Accion != lib_utilidades.Enumerables.Ventanas.Listas)" />
+            </div>
+
+            @if (Model.Accion != lib_utilidades.Enumerables.Ventanas.Listas ||
+            Model.Accion == lib_utilidades.Enumerables.Ventanas.Borrar)
+            {
+                <input type="hidden"
+                       asp-for="@Model.Actual!.Id" />
+            }
+
+
+            @if (ViewData.ContainsKey("Mensaje"))
+            {
+                <input type="hidden"
+                       asp-for="@Model.Accion" />
+                @await Html.PartialAsync("../Emergentes/Mensajes.cshtml")
+                ;
+            }
+
+
+            @if (Model.Accion == lib_utilidades.Enumerables.Ventanas.Listas ||
+            Model.Accion == lib_utilidades.Enumerables.Ventanas.Borrar)
+            {
+                <input id="flTabla"
+                       class="cts_forms form-control"
+                       asp-for="@Model.Filtro!.Tabla"
+                       placeholder="Tabla" />
+                <br />
+
+                <div class="containers_vn panel panel-default">
+                    <table class="tb_data table table-striped table-bordered table-hover">
+                        <tr>
+                            <th>
+                                Id
+                            </th>
+                            <th class="cl_hidden">
+                                Tabla
+                            </th>
+                            <th class="cl_hidden">
+                                Referencia
+                            </th>
+                            <th class="cl_hidden">
+                                Accion
+                            </th>
+                            <th class="cl_hidden">
+                                Fecha
+                        </tr>
+                        @if (Model.Lista == null || !Model.Lista.Any())
+                        {
+                            <tr>
+                                <td colspan="4">No hay datos para mostrar.</td>
+                            </tr>
+                        }
+
+                        @if (Model != null && Model.Lista != null)
+                        {
+                            @foreach (var elemento in Model.Lista)
+                            {
+                                <tr>
+                                    <td>
+                                        @elemento.Id
+                                    </td>
+                                    <td class="cl_hidden">
+                                        @elemento.Tabla
+                                    </td>
+                                    <td class="cl_hidden">
+                                        @elemento.Referencia
+                                    </td>
+                                    <td class="cl_hidden">
+                                        @elemento.Accion
+                                    </td>
+                                    <td class="cl_hidden">
+                                        @elemento.Fecha
+                                </tr>
+                            }
+                        }
+                    </table>
+                </div>
+            }
+        </form>
+    </div>
+</center>
